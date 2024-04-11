@@ -223,7 +223,7 @@
       <h2 class="profile-card__bio-title"> Доступно: {% if not user.data_limit %}∞{% else %}{{ user.data_limit |
         bytesformat }}{% endif %}
       </h2>
-      <h2 class="profile-card__bio-title"> Действует до:
+      <h2 class="profile-card__bio-title"> Действует:
         {% if not user.expire %}
         ∞
         {% else %}
