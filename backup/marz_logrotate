@@ -1,0 +1,10 @@
+/var/lib/marzban-node/*.log {
+    rotate 1
+    copytruncate
+    daily
+    dateext
+    compress
+    dateformat -%Y-%m-%d-%H-%M-%S
+    extension .log
+    olddir /var/lib/marzban-node/logs_backup
+}
