@@ -33,3 +33,5 @@ nano /opt/marzban/.env
 marzban restart
 ```
 - Теперь вы можете открыть свой домен marzban напрямую без /dashboard и увидеть изменения.
+
+Test
