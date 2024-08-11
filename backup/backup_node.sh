@@ -4,6 +4,7 @@
 BACKUP_ACCESS_DIR="/var/lib/marzban-node/logs_backup" # Директория, которую мы будем бэкапить
 BOT_TOKEN=AAAAAAAA:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 CHAT_ID=-11234567899
+TOPIC_ID=1
 NODE=RU
 
 # Логгирование для лучшей видимости
@@ -14,7 +15,7 @@ log() {
 # Функция для отправки файла в Telegram
 send_backup_to_telegram() {
     local file_path="$1"
-    curl -F chat_id="$CHAT_ID" -F document=@"$file_path" -F caption="Log from $NODE" "https://api.telegram.org/bot$BOT_TOKEN/sendDocument"
+    curl -F chat_id="$CHAT_ID" -F document=@"$file_path" -F caption="Log from $NODE" -F message_thread_id="$TOPIC_ID" "https://api.telegram.org/bot$BOT_TOKEN/sendDocument"
 }
 
 # Основная функция бэкапа

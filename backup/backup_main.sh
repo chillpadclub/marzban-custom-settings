@@ -9,6 +9,7 @@ DB_PASSWORD="super-pass" # Пароль базы данных
 BACKUP_DIRECTORIES="/var/lib/marzban /opt/marzban" # Директории для бэкапа
 BOT_TOKEN="123456789:AAAAAAAAAAAAAAAAAAAAAAAAAAAaa"
 CHAT_ID="-123456789"
+TOPIC_ID=1
 NODE="MAIN"
 
 # Логгирование для лучшей видимости
@@ -19,7 +20,7 @@ log() {
 # Функция для отправки файла в Telegram
 send_backup_to_telegram() {
     file_path="$1"
-    response=$(curl -s -o /dev/null -w "%{http_code}" -F chat_id="$CHAT_ID" -F document=@"$file_path" -F caption="Backup from $NODE" "https://api.telegram.org/bot$BOT_TOKEN/sendDocument")
+    response=$(curl -s -o /dev/null -w "%{http_code}" -F chat_id="$CHAT_ID" -F document=@"$file_path" -F caption="Backup from $NODE" -F message_thread_id="$TOPIC_ID" "https://api.telegram.org/bot$BOT_TOKEN/sendDocument")
     if [ "$response" -ne 200 ]; then
         log "Error sending backup to Telegram, response code: $response"
     else
