@@ -15,13 +15,11 @@
 В 00:00 будет создаваться ротация логов \
 В 00:10 будет отправляться архив бэкапов в телеграм
 
-To Do: \
-✅ Backup Logs from Node \
-✅ Backup Config from Main /var/lib/marzban & /opt/marzban (certs,xray_config + .env, docker-compose.yml) \
-✅ Backup MySQL (docker)
 
-## Бэкап MySQL
+## Справка
 Создание бэкапа MySQL
-docker exec marzban-mysql-1 /usr/bin/mysqldump -u root --password=pass marzban > /root/db_name.sql \
+`docker exec marzban-mysql-1 /usr/bin/mysqldump -u root --password=pass marzban > /root/db_name.sql` \
 Восстановление MySQL
-cat /root/db_name.sql | docker exec -i 6be98e2d8af0 /usr/bin/mysql -u root --password=pass marzban
+`cat /root/db_name.sql | docker exec -i 6be98e2d8af0 /usr/bin/mysql -u root --password=pass marzban`
+Проверка Logrotate
+`logrotate --force /etc/logrotate.d/marzban_logs`
